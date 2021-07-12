@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.basic.user.manager.mapper.BasicManagerUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.basic.user.manager.model.BasicManagerUser">
+    <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="actualname" property="actualname" />
+        <result column="password" property="password" />
+        <result column="phone" property="phone" />
+        <result column="islock" property="islock" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user_id" property="createUserId" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user_id" property="updateUserId" />
+        <result column="update_user" property="updateUser" />
+        <result column="is_del" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        username, actualname, password, phone, islock, create_time, update_time, is_del,create_user_id,
+        create_user,update_user_id,update_user
+    </sql>
+
+    <select id="findByManagerUserName" resultMap="BaseResultMap" parameterType="object">
+        select
+            <include refid="Base_Column_List"/>
+        from
+             basic_manager_user
+        where
+            username = #{username}
+        and
+            is_del = #{isDel}
+        and
+            islock = #{islock}
+    </select>
+
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.basic</groupId>
+    <artifactId>basic</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>basic-auth</module>
+        <module>basic-server</module>
+        <module>basic-user</module>
+        <module>basic-model</module>
+        <module>basic-client</module>
+        <module>basic-dictionary</module>
+        <module>basic-gateway</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+
+        <spring-cloud.version>Hoxton.SR11</spring-cloud.version>
+        <shardingsphere.version>4.1.1</shardingsphere.version>
+        <p.version>${version}</p.version>
+        <spring-cloud-child.verion>2.5.2</spring-cloud-child.verion>
+        <mysql-version>6.0.6</mysql-version>
+        <druid.version>1.2.6</druid.version>
+        <nacos.version>0.9.0.RELEASE</nacos.version>
+        <zuul.version>1.4.7.RELEASE</zuul.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-common-util</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-model-server</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-common-mybatis</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-common-auth</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-common-cache</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-model-user</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-model-dictionary</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-common-feign</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-client-server</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-client-user</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basic</groupId>
+                <artifactId>basic-client-dictionary</artifactId>
+                <version>${p.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-cloud-child.verion}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zuul</artifactId>
+                <version>${zuul.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- 后续抽取作为通用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>${nacos.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>${nacos.version}</version>
+        </dependency>
+
+        <!-- 热部署组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.11.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <developers>
+        <developer>
+            <name>张勇</name>
+            <email>zy349101912@gmail.com</email>
+        </developer>
+    </developers>
+
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://119.3.215.143:8000/repository/maven-public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://119.3.215.143:8000/repository/maven-public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

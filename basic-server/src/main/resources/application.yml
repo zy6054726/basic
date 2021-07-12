@@ -1,0 +1,7 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: dev

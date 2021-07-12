@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 119.3.215.143:8001
+        namespace: c028fda1-295a-4a51-862b-797bd2bc703f
+        file-extension: yaml
+        group: dev
+#        prefix: basic-auth
+        ext-config:
+          - data-id: basic-auth-dev.yaml
+            refresh: true
+          - data-id: mybatis-plus-public.yaml
+            refresh: true
