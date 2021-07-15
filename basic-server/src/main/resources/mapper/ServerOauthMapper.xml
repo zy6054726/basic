@@ -18,12 +18,13 @@
     <result column="update_user_id" property="updateUserId" />
     <result column="update_user" property="updateUser" />
     <result column="is_del" property="isDel" />
+    <result column="redirect_uri" property="redirectUri"/>
   </resultMap>
 
   <sql id="base_sql">
     id,client_id,resource_id,client_secret,scpoe,authorized_grant_types,
     access_token_validity,refresh_token_validity,auto_approve,create_time,update_time,
-    create_user_id,create_user,update_user_id,update_user,is_del
+    create_user_id,create_user,update_user_id,update_user,is_del,redirect_uri
   </sql>
 
   <select id="findByClient" resultMap="BaseResultMap" parameterType="string">
@@ -43,7 +44,8 @@
       create_user,
       update_user_id,
       update_user,
-      is_del
+      is_del,
+      redirect_uri
     FROM
       server_oauth
     WHERE

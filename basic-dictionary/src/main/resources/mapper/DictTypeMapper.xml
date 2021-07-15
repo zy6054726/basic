@@ -32,9 +32,6 @@
             data_dict_type
         where
         is_del = #{dictType.isDel}
-        <if test="dictType.nameEn != null and dictType.nameEn != '' ">
-          and  name_en = #{dictType.nameEn}
-        </if>
         <if test="dictType.nameCn != null and dictType.nameCn != '' ">
             and  name_cn = #{nameCn}
         </if>

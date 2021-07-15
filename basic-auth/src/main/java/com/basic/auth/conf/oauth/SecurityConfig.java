@@ -49,6 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // 测试用资源，需要验证了的用户才能访问
                 .anyRequest().authenticated()
+
+                .and()
+                .httpBasic()
+
                 // 其他都放行了
 //                .anyRequest()
                 .and()

@@ -125,6 +125,13 @@
                 <artifactId>spring-cloud-starter-zuul</artifactId>
                 <version>${zuul.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <dependencies>

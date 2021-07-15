@@ -15,6 +15,10 @@
     <dependencies>
         <dependency>
             <groupId>com.basic</groupId>
+            <artifactId>basic-common-auth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.basic</groupId>
             <artifactId>basic-common-util</artifactId>
         </dependency>
         <dependency>
@@ -36,6 +40,10 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
     </dependencies>
 

@@ -11,10 +11,10 @@
     <description>基础服务（数据字典）</description>
     <artifactId>basic-dictionary</artifactId>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.basic</groupId>-->
-<!--            <artifactId>basic-common-auth</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.basic</groupId>
+            <artifactId>basic-common-auth</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.basic</groupId>
             <artifactId>basic-common-mybatis</artifactId>
@@ -42,6 +42,10 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
     </dependencies>
 

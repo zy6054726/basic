@@ -1,5 +1,8 @@
 package com.basic.server.client.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,6 +11,7 @@ import com.basic.commons.ReturnResult;
 import com.basic.commons.enums.Flag;
 import com.basic.server.client.mapper.ServerOauthMapper;
 import com.basic.server.client.model.entity.ServerOauth;
+import com.basic.server.client.model.vo.ServerOauthVo;
 import com.basic.server.client.service.IServerOauthService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -36,7 +40,7 @@ public class ServerOauthServiceImpl implements IServerOauthService {
         if (Objects.isNull(serverOauth)) {
             return new ReturnResult(Flag.SYSTEM_ERROR_EMPTY);
         }
-        serverOauth.setClientSecret(SecureUtil.md5(serverOauth.getClientSecret()));
+        serverOauth.setClientSecret(SecureUtil.md5(RandomUtil.randomString(8)));
         serverOauth.setCreateTime(LocalDateTime.now());
         return serverOauthMapper.insert(serverOauth) > 0
                 ? new ReturnResult<>(Flag.SYSTEM_SUCCESS_ADD)
@@ -86,7 +90,17 @@ public class ServerOauthServiceImpl implements IServerOauthService {
     @Override
     public ReturnResult pageList(ServerOauth serverOauth) {
         serverOauth.setIsDel(ConstantUtil.Constant.isDelete);
+        List<ServerOauthVo> serverOauthVos = CollUtil.newArrayList();
         List<ServerOauth> serverOauths = serverOauthMapper.pageList(serverOauth.getP(), serverOauth);
-        return new ReturnResult(Flag.SYSTEM_SUCCESS_QUERY,serverOauths,serverOauth.getP());
+        if (CollUtil.isNotEmpty(serverOauths)) {
+            serverOauths.forEach(s -> {
+                ServerOauthVo serverOauthVo = new ServerOauthVo();
+                serverOauth.setIsDel(ConstantUtil.Constant.isDelete);
+                BeanUtil.copyProperties(s,serverOauthVo);
+                serverOauthVo.setIsShow(ConstantUtil.Constant.isDelete);
+                serverOauthVos.add(serverOauthVo);
+            });
+        }
+        return new ReturnResult(Flag.SYSTEM_SUCCESS_QUERY,serverOauthVos,serverOauth.getP());
     }
 }

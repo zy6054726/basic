@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author: Mr.zhang
@@ -57,9 +59,9 @@ public class ServerOauthServiceImpl implements ClientDetailsService {
             //设置刷新token的有效期，不设置默认30天
             clientDetails.setRefreshTokenValiditySeconds(refreshTokenValidity.intValue());
         }
-//        Set<String> set = new HashSet<>();
-//        set.add("www.baidu.com");
-//        clientDetails.setRegisteredRedirectUri(set);
+        Set<String> set = new HashSet<>();
+        set.add(serverOauth.getRedirectUri());
+        clientDetails.setRegisteredRedirectUri(set);
         clientDetails.isAutoApprove(serverOauth.getAutoApprove());
         log.info("clientId是：{}", s);
 

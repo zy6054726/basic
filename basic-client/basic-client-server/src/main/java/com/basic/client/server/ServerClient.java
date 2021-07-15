@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = UrlConstant.BASIC_SERVER, fallback = ServerClientImpl.class)
 public interface ServerClient {
 
-    @GetMapping("/server/{clientId}")
+    @GetMapping("/server/getClient/{clientId}")
    public ReturnResult findByClient(@PathVariable("clientId") String clientId);
 }

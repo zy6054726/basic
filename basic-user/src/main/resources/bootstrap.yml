@@ -7,10 +7,7 @@ spring:
         namespace: c028fda1-295a-4a51-862b-797bd2bc703f
         file-extension: yaml
         group: dev
+        prefix: basic-user
         ext-config:
-          - data-id: basic-user-dev.yaml
-#            group: basic
-            refresh: true
           - data-id: mybatis-plus-public.yaml
-#            group: dev
             refresh: true

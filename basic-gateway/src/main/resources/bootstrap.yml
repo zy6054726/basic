@@ -6,9 +6,8 @@ spring:
         server-addr: 119.3.215.143:8001
         namespace: c028fda1-295a-4a51-862b-797bd2bc703f
         file-extension: yaml
+        prefix: basic-gateway
         group: dev
         ext-config:
-          - data-id: basic-gateway-dev.yaml
-            refresh: true
           - data-id: mybatis-plus-public.yaml
             refresh: true

@@ -47,7 +47,7 @@ public class BasicManagerUserController extends BaseController<BasicManagerUser,
         return null;
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/getUser/{username}")
    public ReturnResult findByManagerUserName(@PathVariable("username") String username) {
         return iBasicManagerUserService.findByManagerUserName(username);
     }

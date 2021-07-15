@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @FeignClient(name = UrlConstant.BASIC_USER, fallback = UserClientImpl.class)
 public interface UserClient {
-    @GetMapping("/user/{username}")
+    @GetMapping("/user/getUser/{username}")
     ReturnResult findByManagerUserName(@PathVariable("username") String username);
 }

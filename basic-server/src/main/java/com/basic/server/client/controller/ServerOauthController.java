@@ -37,7 +37,7 @@ public class ServerOauthController extends BaseController<ServerOauth,Long> {
         return iServerOauthService.update(serverOauth);
     }
 
-    @GetMapping("/{clientId}")
+    @GetMapping("/getClient/{clientId}")
     public ReturnResult findByClient(@PathVariable("clientId") String clientId) {
         return iServerOauthService.findByClient(clientId);
     }

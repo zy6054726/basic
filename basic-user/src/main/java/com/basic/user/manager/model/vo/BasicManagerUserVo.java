@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class BasicManagerUserVo extends BModel {
 
     private static final long serialVersionUID = -7334167275260441271L;
+    private Long id;
     /**
      * 用户名
      */
@@ -32,4 +33,5 @@ public class BasicManagerUserVo extends BModel {
      * 是否锁定 0-否 1-是
      */
     private Boolean islock;
+
 }

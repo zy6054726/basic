@@ -1,16 +1,18 @@
-package com.basic.server.client.model.entity;
+package com.basic.server.client.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.basic.mybatis.model.BaseModel;
+import com.basic.commons.basemodel.BModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author: Mr.zhang
+ * @Date: 2021/7/14 12:42
+ */
 @Data
 @NoArgsConstructor
-@TableName("server_oauth")
-public class ServerOauth extends BaseModel<Page> {
-    private static final long serialVersionUID = 1002908916083328306L;
+public class ServerOauthVo extends BModel {
+    private static final long serialVersionUID = -7182058735199106837L;
+    private Long id;
 
     /**
      * 客户端id
@@ -53,8 +55,12 @@ public class ServerOauth extends BaseModel<Page> {
     private String autoApprove;
 
     /**
+     * 是否显示
+     */
+    private Boolean isShow;
+
+    /**
      * 重定向地址
      */
     private String redirectUri;
-
 }

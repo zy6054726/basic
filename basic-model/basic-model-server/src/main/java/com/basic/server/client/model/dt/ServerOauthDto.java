@@ -56,4 +56,9 @@ public class ServerOauthDto extends BModel {
      * 自动允许
      */
     private String autoApprove;
+
+    /**
+     * 重定向地址
+     */
+    private String redirectUri;
 }
