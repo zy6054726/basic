@@ -1,5 +1,6 @@
 package com.basic.dictionary.zuul.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.basic.dictionary.zuul.model.GatewayApiDefine;
 import com.basic.mybatis.mapper.BaseMappers;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +24,6 @@ public interface GatewayApiDefineMapper extends BaseMappers<GatewayApiDefine> {
      * @return
      */
     public List<GatewayApiDefine> findByList(@Param("enabled") Boolean enabled, @Param("isDel") Boolean isDel);
+
+    public List<GatewayApiDefine> pageList(Page page, @Param("gatewayApiDefine") GatewayApiDefine gatewayApiDefine);
 }

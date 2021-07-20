@@ -53,4 +53,9 @@ public class GatewayApiDefineController extends BaseController<GatewayApiDefine,
     public ReturnResult findById(Long uuid) {
         return null;
     }
+
+    @PostMapping("/page")
+    public ReturnResult pageList(@RequestBody GatewayApiDefine gatewayApiDefine) {
+        return iGatewayApiDefineService.pageList(gatewayApiDefine);
+    }
 }

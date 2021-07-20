@@ -38,4 +38,26 @@
               is_del=#{isDel}
     </select>
 
+    <select id="pageList" parameterType="com.basic.dictionary.zuul.model.GatewayApiDefine" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from
+            gateway_api_define
+        where
+            is_del = #{gatewayApiDefine.isDel}
+        <if test="gatewayApiDefine.serviceId != null and gatewayApiDefine.serviceId != ''">
+        and
+            service_id = #{gatewayApiDefine.serviceId}
+        </if>
+        <if test="gatewayApiDefine.apiName != null and gatewayApiDefine.apiName != ''">
+        and
+            api_name = #{gatewayApiDefine.apiName}
+        </if>
+        <if test="gatewayApiDefine.enabled != null">
+        and
+            enabled = #{gatewayApiDefine.enabled}
+        </if>
+    </select>
+
+
 </mapper>

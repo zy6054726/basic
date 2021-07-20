@@ -19,4 +19,11 @@ public interface IGatewayApiDefineService extends BaseService<GatewayApiDefine,L
      * @return
      */
     ReturnResult findByList(Boolean enable);
+
+    /**
+     * 分页查询
+     * @param gatewayApiDefine
+     * @return
+     */
+    ReturnResult pageList(GatewayApiDefine gatewayApiDefine);
 }

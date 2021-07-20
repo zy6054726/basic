@@ -91,7 +91,7 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
             ZuulProperties.ZuulRoute zuulRoute = new ZuulProperties.ZuulRoute();
             zuulRoute.setSensitiveHeaders(new LinkedHashSet());
             BeanUtil.copyProperties(s, zuulRoute);
-            zuulRoute.setId(zuulRoute.getServiceId());
+            zuulRoute.setId(s.getApiName());
             routes.put(zuulRoute.getPath(), zuulRoute);
         });
         return routes;

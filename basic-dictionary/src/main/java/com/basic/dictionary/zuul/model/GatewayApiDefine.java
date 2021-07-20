@@ -1,6 +1,7 @@
 package com.basic.dictionary.zuul.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.basic.mybatis.model.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("gateway_api_define")
-public class GatewayApiDefine extends BaseModel<GatewayApiDefine> {
+public class GatewayApiDefine extends BaseModel<Page> {
     private static final long serialVersionUID = 4186151896292287210L;
     /**
      * 请求路径
