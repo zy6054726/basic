@@ -26,4 +26,5 @@ public interface IGatewayApiDefineService extends BaseService<GatewayApiDefine,L
      * @return
      */
     ReturnResult pageList(GatewayApiDefine gatewayApiDefine);
+
 }

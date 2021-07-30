@@ -1,11 +1,14 @@
 package com.basic.netty.server;
 
+import com.basic.commons.ReturnResult;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date: 2021/7/19 19:34
  */
 @Slf4j
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class NettyServerHandler extends SimpleChannelInboundHandler<ReturnResult> {
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ReturnResult returnResult) throws Exception {
+
+    }
 
     /**
      * 管理一个全局map，保存连接进服务端的通道数量

@@ -31,7 +31,7 @@
         <p.version>${version}</p.version>
         <spring-cloud-child.verion>2.5.2</spring-cloud-child.verion>
         <mysql-version>6.0.6</mysql-version>
-        <druid.version>1.2.6</druid.version>
+        <druid.version>1.2.1</druid.version>
         <nacos.version>0.9.0.RELEASE</nacos.version>
         <zuul.version>1.4.7.RELEASE</zuul.version>
         <netty.version>4.1.59.Final</netty.version>
@@ -118,7 +118,7 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
+                <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
 

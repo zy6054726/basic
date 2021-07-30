@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @since 2021-07-09
  */
 @RestController
-@RequestMapping("/zuul")
+@RequestMapping("/gate")
 public class GatewayApiDefineController {
     @Resource
     private ZuulService zuulService;

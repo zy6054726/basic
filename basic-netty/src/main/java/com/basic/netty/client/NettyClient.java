@@ -1,14 +1,9 @@
 package com.basic.netty.client;
 
-import com.alibaba.fastjson.JSON;
-import com.basic.commons.ReturnResult;
-import com.basic.commons.enums.Flag;
-import com.basic.netty.config.NettyMessageDecode;
-import com.basic.netty.config.NettyMessageEncode;
+import com.basic.netty.model.SocketClient;
 import com.basic.netty.server.NettyServerChannelInitializer;
 import com.basic.netty.server.NettyServerHandler;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -56,8 +51,8 @@ public class NettyClient implements Runnable {
                     .handler(new NettyServerChannelInitializer() {
                         @Override
                         protected void initChannel(SocketChannel channel) throws Exception {
-                            channel.pipeline().addLast("encoder", new NettyMessageEncode());
-                            channel.pipeline().addLast("decoder", new NettyMessageDecode());
+                            channel.pipeline().addLast("decoder",new StringDecoder(CharsetUtil.UTF_8));
+                            channel.pipeline().addLast("encoder",new StringEncoder(CharsetUtil.UTF_8));
                             channel.pipeline().addLast(new LineBasedFrameDecoder(SIZE));
                             channel.pipeline().addLast(new NettyServerHandler());
                         }
@@ -97,14 +92,25 @@ public class NettyClient implements Runnable {
      *  下面是不加线程的
      */
     public static void main(String[] args) throws Exception {
-
-        sendMessage(JSON.toJSONString(new ReturnResult<>(Flag.SUCCESS)));
+        SocketClient socketClient = new SocketClient();
+        try {
+            socketClient =  sendMessage();
+            socketClient.getChannelFuture().channel().writeAndFlush("new ReturnResult<>()".getBytes());
+            closeFuture(socketClient.getChannelFuture());
+        }finally {
+            socketClient.getGroup().shutdownGracefully();
+        }
     }
 
-    public static void sendMessage(String content) throws InterruptedException {
+    /**
+     * 客户端连接
+     * @return
+     * @throws InterruptedException
+     */
+    public static SocketClient sendMessage() throws InterruptedException {
         // Configure the client.
         EventLoopGroup group = new NioEventLoopGroup();
-        try {
+//        try {
             Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioSocketChannel.class)
@@ -112,18 +118,23 @@ public class NettyClient implements Runnable {
                     .handler(new NettyServerChannelInitializer() {
                         @Override
                         protected void initChannel(SocketChannel channel) throws Exception {
-                            channel.pipeline().addLast(new NettyMessageEncode());
-                            channel.pipeline().addLast(new NettyMessageDecode());
+                            channel.pipeline().addLast("decoder",new StringDecoder(CharsetUtil.UTF_8));
+                            channel.pipeline().addLast("encoder",new StringEncoder(CharsetUtil.UTF_8));
                             channel.pipeline().addLast(new LineBasedFrameDecoder(SIZE));
                             channel.pipeline().addLast(new NettyServerHandler());
                         }
                     });
-
-            ChannelFuture future = b.connect(HOST, PORT).sync();
-            future.channel().writeAndFlush(content);
-            future.channel().closeFuture().sync();
-        } finally {
-            group.shutdownGracefully();
-        }
+//            future.channel().writeAndFlush(content);
+        return new SocketClient(group, b.connect(HOST, PORT).sync());
+//        } finally {
+//            group.shutdownGracefully();
+//        }
     }
+
+    public static void closeFuture(ChannelFuture channelFuture) throws InterruptedException {
+                if (channelFuture != null) {
+                    channelFuture.channel().closeFuture().sync();
+                }
+    }
+
 }

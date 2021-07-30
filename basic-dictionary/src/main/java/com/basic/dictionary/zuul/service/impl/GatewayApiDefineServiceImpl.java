@@ -32,6 +32,7 @@ public class GatewayApiDefineServiceImpl implements IGatewayApiDefineService {
     @Resource
     private GatewayApiDefineMapper gatewayApiDefineMapper;
 
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult insert(GatewayApiDefine gatewayApiDefine) throws RuntimeException {
@@ -52,6 +53,7 @@ public class GatewayApiDefineServiceImpl implements IGatewayApiDefineService {
         }
         GatewayApiDefine gatewayApiDefine = new GatewayApiDefine();
         gatewayApiDefine.setId(t);
+        gatewayApiDefine.setIsDel(!ConstantUtil.Constant.isDelete);
         return gatewayApiDefineMapper.updateById(gatewayApiDefine) > 0
                 ? new ReturnResult(Flag.SYSTEM_SUCCESS_DELETE)
                 : new ReturnResult(Flag.SYSTEM_ERROR_DELETE);

@@ -28,10 +28,9 @@ public class GatewayApiDefineController extends BaseController<GatewayApiDefine,
     public ReturnResult save(@RequestBody GatewayApiDefine gatewayApiDefine) {
         return iGatewayApiDefineService.insert(gatewayApiDefine);
     }
-
     @DeleteMapping("/{t}")
     @Override
-    public ReturnResult delete(@PathVariable Long t) {
+    public ReturnResult delete(@PathVariable("t") Long t) {
         return iGatewayApiDefineService.deleteById(t);
     }
 
@@ -44,10 +43,6 @@ public class GatewayApiDefineController extends BaseController<GatewayApiDefine,
     public ReturnResult findByList(@PathVariable Boolean enable) {
         return iGatewayApiDefineService.findByList(enable);
     }
-//    @GetMapping("/")
-//    public ReturnResult refreshRoute() {
-//        return iGatewayApiDefineService.refreshRoute();
-//    }
 
     @Override
     public ReturnResult findById(Long uuid) {
