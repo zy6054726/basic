@@ -55,9 +55,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/user/getUser/**").permitAll()
-//                .and()
+                .authorizeRequests()
+                .antMatchers(ConstantUtil.UrlConstant.actuator).permitAll()
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()

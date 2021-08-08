@@ -18,6 +18,7 @@
         <module>basic-dictionary</module>
         <module>basic-gateway</module>
         <module>basic-netty</module>
+        <module>basic-admin</module>
     </modules>
 
     <properties>
@@ -35,6 +36,7 @@
         <nacos.version>0.9.0.RELEASE</nacos.version>
         <zuul.version>1.4.7.RELEASE</zuul.version>
         <netty.version>4.1.59.Final</netty.version>
+        <admin.version>2.3.0</admin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -44,6 +46,11 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${admin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
@@ -187,6 +194,20 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
         </plugins>

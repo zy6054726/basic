@@ -1,6 +1,7 @@
 package com.basic.user.manager.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.basic.mybatis.model.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("basic_manager_user")
-public class BasicManagerUser extends BaseModel<BasicManagerUser> {
+public class BasicManagerUser extends BaseModel<Page> {
 
 
     private static final long serialVersionUID = 9011881491697753190L;
