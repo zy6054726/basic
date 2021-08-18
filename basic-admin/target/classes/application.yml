@@ -1,7 +1,0 @@
-server:
-  port: 8006
-spring:
-  application:
-    name: basic-admin
-  profiles:
-    active: dev
