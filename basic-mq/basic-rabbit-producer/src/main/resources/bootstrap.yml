@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 119.3.215.143:8001
+        namespace: a08e8b77-c884-492e-befb-f94c2a7dffc9
+        file-extension: yaml
+        prefix: basic-rabbit-producer
+        ext-config:
+          - data-id: mybatis-plus-public.yaml
+            group: dev
+            refresh: true
+        group: DEFAULT_GROUP

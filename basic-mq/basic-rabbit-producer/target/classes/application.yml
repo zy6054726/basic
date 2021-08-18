@@ -1,0 +1,36 @@
+server:
+  port: 10005
+spring:
+  profiles:
+    active: dev
+  application:
+    name: basic-rabbit-producer
+  cloud:
+    stream:
+      bindings:
+#        input:
+#          destination: demo #要和output的destination一致, 这样才能将队列和写入消息的exchange关联起来
+#          binder: local_rabbit
+#          group: logMessageConsumers
+        output:
+          destination: demo
+          binder: myDemo #设置要绑定的消息服务的具体设置
+          content-type: application/json # 设置消息类型，本次为json，文本则设为text/plain
+#      rabbit:
+#        bindings:
+#          input:
+#            consumer:
+#              concurrency: 4
+#              max-concurrency: 8
+#              prefetch: 10
+      binders:
+        myDemo:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 119.3.215.143
+                port: 10001
+                username: admin
+                password: zhangyong
+                virtual-host: /

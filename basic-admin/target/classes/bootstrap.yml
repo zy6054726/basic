@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 192.168.0.242:8001
+        namespace: 3277eb6a-f4da-46ac-8cf2-da470e2fa614
+        file-extension: yaml
+        prefix: basic-admin
