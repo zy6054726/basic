@@ -2,6 +2,7 @@ package com.basic.server.client.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -34,7 +35,6 @@ public class ServerOauthServiceImpl implements IServerOauthService {
     private ServerOauthMapper serverOauthMapper;
 
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult insert(ServerOauth serverOauth) throws RuntimeException {
         if (Objects.isNull(serverOauth)) {

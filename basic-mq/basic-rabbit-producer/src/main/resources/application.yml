@@ -15,7 +15,7 @@ spring:
 #        output:
 #          destination: demo
 #          binder: myDemo #设置要绑定的消息服务的具体设置
-#          content-type: application/json # 设置消息类型，本次为json，文本则设为text/plain
+#          content-type: application/json # 设置消息类型，本次为json
 ##      rabbit:
 ##        bindings:
 ##          input:

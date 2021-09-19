@@ -29,7 +29,6 @@ public class BasicManagerUserRoleServiceImpl implements IBasicManagerUserRoleSer
     @Resource
     private BasicManagerUserRoleMapper basicManagerUserRoleMapper;
 
-    @Transactional(rollbackFor =  Exception.class)
     @Override
     public ReturnResult insert(BasicManagerUserRole basicManagerUserRole) throws RuntimeException {
         if (ParameterUtils.attributesIsNull(basicManagerUserRole)) {
@@ -41,7 +40,6 @@ public class BasicManagerUserRoleServiceImpl implements IBasicManagerUserRoleSer
                 : new ReturnResult(Flag.SYSTEM_ERROR_SAVE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult deleteById(Long t) throws RuntimeException {
         if (ParameterUtils.attributesIsNull(t)) {
@@ -55,7 +53,6 @@ public class BasicManagerUserRoleServiceImpl implements IBasicManagerUserRoleSer
                 : new ReturnResult(Flag.SYSTEM_ERROR_DELETE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult update(BasicManagerUserRole basicManagerUserRole) throws RuntimeException {
         if (ParameterUtils.attributesIsNull(basicManagerUserRole)) {

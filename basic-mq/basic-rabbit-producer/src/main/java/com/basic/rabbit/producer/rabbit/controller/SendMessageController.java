@@ -1,7 +1,10 @@
 package com.basic.rabbit.producer.rabbit.controller;
 
+import com.basic.commons.ReturnResult;
 import com.basic.rabbit.producer.rabbit.service.IMessageProvider;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -11,13 +14,14 @@ import javax.annotation.Resource;
  * @Date: 2021/8/14 16:04
  */
 @RestController
+@RequestMapping("/mq")
 public class SendMessageController {
 
     @Resource
     private IMessageProvider messageProvider;
 
-    @GetMapping("/sendMessage")
-    public String sendMessage() {
-        return messageProvider.send();
+    @GetMapping("/")
+    public <T> ReturnResult send(@RequestBody T t) {
+        return messageProvider.send(t);
     }
 }

@@ -29,7 +29,6 @@ public class DictTypeServiceImpl implements IDictTypeService {
     @Resource
     private DictTypeMapper dictTypeMapper;
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult insert(DictType dictType) throws RuntimeException {
         if (Objects.isNull(dictType)) {
@@ -41,7 +40,6 @@ public class DictTypeServiceImpl implements IDictTypeService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_SAVE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult deleteById(Long t) throws RuntimeException {
         if (t == null) {
@@ -55,7 +53,6 @@ public class DictTypeServiceImpl implements IDictTypeService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_SAVE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult update(DictType dictType) throws RuntimeException {
         if (Objects.isNull(dictType)) {

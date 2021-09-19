@@ -33,7 +33,6 @@ public class BasicManagerUserServiceImpl implements IBasicManagerUserService {
     @Resource
     private BasicManagerUserMapper basicManagerUserMapper;
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult insert(BasicManagerUser basicManagerUser) throws RuntimeException {
         if (Objects.isNull(basicManagerUser)) {
@@ -46,7 +45,6 @@ public class BasicManagerUserServiceImpl implements IBasicManagerUserService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_SAVE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult deleteById(Long t) throws RuntimeException {
         if (t == null) {
@@ -60,7 +58,6 @@ public class BasicManagerUserServiceImpl implements IBasicManagerUserService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_DELETE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult update(BasicManagerUser basicManagerUser) throws RuntimeException {
         if (Objects.isNull(basicManagerUser)) {

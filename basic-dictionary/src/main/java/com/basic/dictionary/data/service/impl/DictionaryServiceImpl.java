@@ -28,7 +28,6 @@ public class DictionaryServiceImpl implements IDictionaryService {
     @Resource
     private DictionaryMapper dictionaryMapper;
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult insert(Dictionary dictionary) throws RuntimeException {
         if (Objects.isNull(dictionary)) {
@@ -40,7 +39,6 @@ public class DictionaryServiceImpl implements IDictionaryService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_SAVE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult deleteById(Long t) throws RuntimeException {
         if (t == null) {
@@ -54,7 +52,6 @@ public class DictionaryServiceImpl implements IDictionaryService {
                 : new ReturnResult(Flag.SYSTEM_ERROR_UPDATE);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public ReturnResult update(Dictionary dictionary) throws RuntimeException {
         if (Objects.isNull(dictionary)) {
