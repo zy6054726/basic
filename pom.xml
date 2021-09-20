@@ -16,10 +16,11 @@
         <module>basic-model</module>
         <module>basic-client</module>
         <module>basic-dictionary</module>
-        <module>basic-gateway</module>
         <module>basic-netty</module>
         <module>basic-admin</module>
         <module>basic-mq</module>
+        <module>basic-zuul</module>
+        <module>basic-gateway</module>
     </modules>
 
     <properties>

@@ -3,7 +3,10 @@ package com.basic.gateway.dynamicrouting;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.basic.commons.ConstantUtil;
+import com.basic.commons.basemodel.BModel;
 import com.basic.gateway.zuul.mapper.GatewayApiDefineMapper;
 import com.basic.gateway.zuul.model.GatewayApiDefine;
 import lombok.extern.slf4j.Slf4j;
@@ -48,9 +51,8 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
     }
 
     /**
-     * @author:XingWL
+     * Mr.zhang
      * @description:路由规则加载算法
-     * @date: 2019/4/27 18:17
      */
     @Override
     protected Map<String, ZuulProperties.ZuulRoute> locateRoutes() {
@@ -80,7 +82,9 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
 
     private Map<String, ZuulProperties.ZuulRoute> locateRoutesFromDB() {
         Map<String, ZuulProperties.ZuulRoute> routes = new LinkedHashMap<>();
-        List<GatewayApiDefine> gatewayApiDefines = gatewayApiDefineMapper.findByList(Boolean.TRUE,ConstantUtil.Constant.isDelete);
+
+//        List<GatewayApiDefine> gatewayApiDefines = gatewayApiDefineMapper.findByList(Boolean.TRUE,ConstantUtil.Constant.isDelete);
+        List<GatewayApiDefine> gatewayApiDefines = gatewayApiDefineMapper.selectList(Wrappers.<GatewayApiDefine>lambdaQuery().eq(GatewayApiDefine::getEnabled, Boolean.TRUE).eq(BModel::getIsDel, ConstantUtil.Constant.isDelete));
         if (CollUtil.isEmpty(gatewayApiDefines)) {
             return routes;
         }

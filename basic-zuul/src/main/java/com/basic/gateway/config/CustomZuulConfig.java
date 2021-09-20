@@ -3,7 +3,6 @@ package com.basic.gateway.config;
 import com.basic.gateway.dynamicrouting.CustomRouteLocator;
 import com.basic.gateway.zuul.mapper.GatewayApiDefineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
